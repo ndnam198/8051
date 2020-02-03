@@ -1,0 +1,3 @@
+".\Objects\main.obj" 
+TO ".\Objects\LCD16x2" 
+PRINT(".\Listings\LCD16x2.m51")

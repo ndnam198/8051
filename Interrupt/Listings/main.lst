@@ -1,0 +1,150 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              09/07/2019 20:08:23 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: A:\Learning Tools\KeiC 5\Keilc_C51\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTE
+                    -ND PRINT(.\Listings\main.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <REGX51.H>
+   2          
+   3          #define led1  P2_0
+   4          #define led2  P2_1
+   5          #define led3  P2_2
+   6          #define led4  P2_3
+   7          #define led5  P2_4
+   8          #define led6  P2_5
+   9          #define on  1
+  10          #define off 0
+  11          unsigned int i, a ,b ,t;
+  12          unsigned int f, count;
+  13          char so[] = {0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x82, 0xf8, 0x80, 0x90};
+  14          unsigned char tn, cn, n, tram, chuc, dv;
+  15          void delay(unsigned int x){
+  16   1        while(x--);
+  17   1      }
+  18          
+  19          void delay_ms(int ms){
+  20   1        while(ms--){
+  21   2        TMOD = 0x11;  // dung timer 1 o che do dem 16bit 
+  22   2        TH1 = 0xfc;   // nap gia tri dem 1ms
+  23   2        TL1 = 0x18; 
+  24   2        TR1 = 1;      // khoi dong timer
+  25   2        while(!TF1);
+  26   2        TF1 = 0;
+  27   2        TR1 = 0;
+  28   2        }
+  29   1      }
+  30          
+  31          void Interrupt_Init(void){
+  32   1        TMOD = 0x11;
+  33   1        TH0 = 0xfc;
+  34   1        TL0 = 0x31;
+  35   1        TR0 = 1;    
+  36   1        EX0 = 1;      
+  37   1        ET0 = 1;
+  38   1        //EX1 = 1;
+  39   1        EA = 1;
+  40   1        P3_2 = 1;     // cau hinh che do input
+  41   1        IT0 = 1;      // ngat SUON XUONG
+  42   1        //IT1 = 1;      // ngat suon xuong
+  43   1      }
+  44          
+  45          void Display_Freg(void){  //ham hien thi gia tri tan so do dc
+  46   1        
+  47   1        
+  48   1          for(i = 0; i<= 16; i++){
+  49   2            led1 = on; P0 = so[tn];     delay_ms(10); led1 = off;
+  50   2            led2 = on; P0 = so[cn];     delay_ms(10); led2 = off;
+  51   2            led3 = on; P0 = so[n];      delay_ms(10); led3 = off;
+  52   2            led4 = on; P0 = so[tram];   delay_ms(10); led4 = off;
+  53   2            led5 = on; P0 = so[chuc];   delay_ms(10); led5 = off;
+  54   2            led6 = on; P0 = so[dv];     delay_ms(10); led6 = off;
+C51 COMPILER V9.60.0.0   MAIN                                                              09/07/2019 20:08:23 PAGE 2   
+
+  55   2          }
+  56   1      }
+  57          
+  58          void tachso(unsigned int freg){
+  59   1        tn = freg/100000;
+  60   1        cn = (freg%100000)/10000;
+  61   1        n = (freg%10000)/1000;
+  62   1        tram = (freg%1000)/100;
+  63   1        chuc = (freg%100)/10;
+  64   1        dv = freg%10;
+  65   1      }
+  66          
+  67          void main(){
+  68   1      //  TMOD = 0x01;  // dung timer 1 o che do dem 16bit 
+  69   1      //  TH0 = 0xfc;   // nap gia tri dem 1ms
+  70   1      //  TL0 = 0x18; 
+  71   1      //  TR0 = 1;      // khoi dong timer
+  72   1      //  EA = 1;       // cho phep ngat all
+  73   1      //  ET0 = 1;      // ngat timer 0 voi co ngat la TF0
+  74   1      //  EX0 = 1;      // ngat ngoai 0 co ngat IE0 
+  75   1      //  EX1 = 1;      // ngat ngoai 1 co ngat IE1  
+  76   1      //  P1 = 0x00;
+  77   1      //  led1 = led2 =0;
+  78   1          Interrupt_Init();
+  79   1        while(1){
+  80   2          Display_Freg();
+  81   2          
+  82   2        }
+  83   1      }
+  84          
+  85          //Khai bao ham ngat theo syntax void name(void) interruptX // X: stt ngat 
+  86          
+  87          void ISR_EX0_Handler(void)  interrupt 0{  //ham xu li ngat ngoai 0
+  88   1        count++;
+  89   1      //  int a = 50000;
+  90   1      //  led1 = led2 = 0;
+  91   1      //  P1_0 = 1; 
+  92   1      //  while(a--);
+  93   1      //  P1_0 = 0;
+  94   1        
+  95   1      }
+  96          
+  97          void ISR_ET0_Handler(void)  interrupt 1{  //ham xu li ngat Timer 0
+  98   1        TH0 = 0xfc;   // nap gia tri dem 1ms
+  99   1        TL0 = 0x31; 
+ 100   1        t++;
+ 101   1        TR0 = 1;      //khoi dong lai timer0 
+ 102   1        if(t == 1000){
+ 103   2          f = count;
+ 104   2          tachso(f);
+ 105   2          count = 0;
+ 106   2          t = 0;
+ 107   2        }
+ 108   1      }
+ 109          
+ 110          //void ISR_EX1_Handler(void) interrupt 2{   //ham xu li ngat ngoai 1
+ 111          //  led1 = led2 = 1;
+ 112          //  for(i = 0;i<5;i++){
+ 113          //    P1_1 = 1;
+ 114          //    a = 25000;
+ 115          //    while(a--);
+ 116          //    P1_1 = 0;
+C51 COMPILER V9.60.0.0   MAIN                                                              09/07/2019 20:08:23 PAGE 3   
+
+ 117          //    b = 25000;
+ 118          //    while(b--);
+ 119          //  }
+ 120          //}
+ 121              
+ 122              
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    435    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     27       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,7 @@
+"main.obj",
+".\Delay.obj",
+".\LCD4.obj",
+".\ADC0808.obj" 
+TO "ADC_Phan3_ADC0808" 
+
+ru 

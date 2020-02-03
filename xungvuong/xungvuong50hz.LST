@@ -1,0 +1,53 @@
+A51 MACRO ASSEMBLER  XUNGVUONG50HZ                                                        12/20/2018 19:15:45 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02
+OBJECT MODULE PLACED IN xungvuong50hz.OBJ
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE xungvuong50hz.asm SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     org 00h
+0000 802E              2     sjmp main
+000B                   3     org 0bh
+000B 8035              4     sjmp isr
+0030                   5     org 30h
+0030                   6     main:
+0030 758901            7     mov tmod, #01h
+0033 75A882            8     mov ie, #10000010B
+0036 758CDC            9     mov th0, #220
+0039 758A00           10     mov tl0, #00h
+003C D2A2             11     setb p2.2
+003E D28C             12     setb tr0
+0040                  13     here:
+0040 80FE             14     sjmp here
+                      15     
+0042                  16     isr:
+0042 B2A2             17     cpl p2.2
+0044 758CDC           18     mov th0, #220
+0047 758A00           19     mov tl0, #00h
+004A 32               20     reti
+                      21     end
+A51 MACRO ASSEMBLER  XUNGVUONG50HZ                                                        12/20/2018 19:15:45 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+HERE . . . . . . .  C ADDR   0040H   A   
+IE . . . . . . . .  D ADDR   00A8H   A   
+ISR. . . . . . . .  C ADDR   0042H   A   
+MAIN . . . . . . .  C ADDR   0030H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+TH0. . . . . . . .  D ADDR   008CH   A   
+TL0. . . . . . . .  D ADDR   008AH   A   
+TMOD . . . . . . .  D ADDR   0089H   A   
+TR0. . . . . . . .  B ADDR   0088H.4 A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

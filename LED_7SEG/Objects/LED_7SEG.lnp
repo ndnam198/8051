@@ -1,0 +1,3 @@
+".\Objects\main.obj" 
+TO ".\Objects\LED_7SEG" 
+PRINT(".\Listings\LED_7SEG.m51")

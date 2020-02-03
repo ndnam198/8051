@@ -1,0 +1,72 @@
+C51 COMPILER V9.01   ADC0808                                                               05/19/2014 01:17:23 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE ADC0808
+OBJECT MODULE PLACED IN .\ADC0808.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\Lib\ADC0808.c OMF2 BROWSE DEBUG PRINT(.\ADC0808.lst) OBJECT(.\ADC0808.ob
+                    -j)
+
+line level    source
+
+   1          // Yeu cau: Khai bao ket noi voi ADC0808 trong file Port.h
+   2          //#define ADC0808_DATA P3
+   3          //sbit ADC0808_ADDA = P2^0;
+   4          //sbit ADC0808_ADDB = P2^1;
+   5          //sbit ADC0808_ADDC = P2^2;
+   6          //sbit ADC0808_ALE  = P2^3;
+   7          //sbit ADC0808_START = P2^4;
+   8          //sbit ADC0808_EOC  = P2^5;
+   9          //sbit ADC0808_OE   = P2^6;
+  10          
+  11          #include "main.h"
+  12          #include "port.h"
+  13          
+  14          void ADC0808_Init()
+  15          {
+  16   1              ADC0808_START = 0;
+  17   1              ADC0808_ALE = 0;
+  18   1              ADC0808_OE = 0; 
+  19   1      }
+  20          
+  21          unsigned char ADC0808_Read(unsigned char channel)
+  22          {
+  23   1              unsigned char kq;
+  24   1      
+  25   1              ADC0808_ADDA = channel & 0x01;
+  26   1              ADC0808_ADDB = channel & 0x02;
+  27   1              ADC0808_ADDC = channel & 0x04;
+  28   1      
+  29   1              ADC0808_ALE = 1;
+  30   1              ADC0808_START = 1;
+  31   1              ADC0808_ALE = 0;
+  32   1              ADC0808_START = 0;
+  33   1      
+  34   1              while(ADC0808_EOC);
+  35   1              while(!ADC0808_EOC);
+  36   1      
+  37   1              ADC0808_OE = 1;
+  38   1              kq = ADC0808_DATA;
+  39   1              ADC0808_OE = 0;
+  40   1      
+  41   1              return kq;
+  42   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     41    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+C51 COMPILER V9.01   ADC0808                                                               05/19/2014 01:17:23 PAGE 2   
+
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

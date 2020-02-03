@@ -1,0 +1,104 @@
+A51 MACRO ASSEMBLER  HIEN2SO                                                              12/14/2018 14:30:57 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02
+OBJECT MODULE PLACED IN hien2so.OBJ
+ASSEMBLER INVOKED BY: E:\lap trinh 8051\Keil 4\C51\BIN\A51.EXE hien2so.asm SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+0050                   1     org 50h         
+0050 9000AC            2     mov DPTR, #ma7thanh
+0053 7D64              3     mov r5,#100
+0055 7E1E              4     chaylai:   mov r6,#30
+0057 7919              5                        mov r1,#25 
+0059 EE                6     lap:mov a,r6
+005A 89F0              7             mov b,r1
+005C B4FF25            8     cjne a,#-1,hienthi1
+005F D5F002            9     djnz b,hienthi2
+0062 80F1             10     sjmp    chaylai
+                      11     
+                      12     
+0064                  13     hienthi2:
+0064 E5F0             14     mov a,b
+0066 75F00A           15     mov b,#10
+0069 84               16     div ab
+006A 93               17     movc a,@a+DPTR
+006B D291             18     setb p1.1
+006D F580             19     mov p0,a
+006F 1200A3           20     lcall delay
+0072 C291             21     clr p1.1
+                      22     
+0074 D290             23     setb p1.0
+0076 E5F0             24     mov a,b
+0078 93               25     movc a,@a+DPTR
+0079 F580             26     mov p0,a
+007B 1200A3           27     lcall delay
+007E C290             28     clr p1.0
+                      29     
+0080 DDD7             30     djnz r5,lap
+0082 80D5             31     sjmp lap
+                      32     
+0084                  33     hienthi1:
+0084 75F00A           34     mov b,#10
+0087 84               35     div ab
+0088 93               36     movc a,@a+DPTR
+0089 D293             37     setb p1.3
+008B F5A0             38     mov p2,a
+008D 1200A3           39     lcall delay
+0090 C293             40     clr p1.3
+                      41     
+0092 D292             42     setb p1.2
+0094 E5F0             43     mov a,b
+0096 93               44     movc a,@a+DPTR
+0097 F5A0             45     mov p2,a
+0099 1200A3           46     lcall delay
+009C C292             47     clr p1.2
+                      48     
+009E DDB9             49     djnz r5,lap
+00A0 1E               50     dec r6
+00A1 80B6             51     sjmp lap
+                      52     
+                      53     
+00A3                  54     delay:
+00A3 7C03             55     mov r4,#3
+00A5 7AFA             56     back: mov r2,#250
+00A7 DAFE             57     again:djnz r2,again
+00A9 DCFA             58     djnz r4,back
+A51 MACRO ASSEMBLER  HIEN2SO                                                              12/14/2018 14:30:57 PAGE     2
+
+00AB 22               59     ret
+00AC C0F9A4B0         60     ma7thanh:       DB 0C0H,0F9H,0A4H,0B0H,99H,92H,82H,0F8H,80H,90H,89H; Chuyen doi BCD
+00B0 999282F8                
+00B4 809089                  
+                      61     end
+                             
+                             
+                             
+                             
+A51 MACRO ASSEMBLER  HIEN2SO                                                              12/14/2018 14:30:57 PAGE     3
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+AGAIN. . . . . . .  C ADDR   00A7H   A   
+B. . . . . . . . .  D ADDR   00F0H   A   
+BACK . . . . . . .  C ADDR   00A5H   A   
+CHAYLAI. . . . . .  C ADDR   0055H   A   
+DELAY. . . . . . .  C ADDR   00A3H   A   
+HIENTHI1 . . . . .  C ADDR   0084H   A   
+HIENTHI2 . . . . .  C ADDR   0064H   A   
+LAP. . . . . . . .  C ADDR   0059H   A   
+MA7THANH . . . . .  C ADDR   00ACH   A   
+P0 . . . . . . . .  D ADDR   0080H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

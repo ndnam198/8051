@@ -1,0 +1,99 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        12/21/2018  15:52:41  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE lcd.obj TO lcd
+
+
+INPUT MODULES INCLUDED:
+  lcd.obj (LCD)
+
+
+LINK MAP OF MODULE:  lcd (LCD)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0062H     ABSOLUTE     
+
+
+
+SYMBOL TABLE OF MODULE:  lcd (LCD)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        LCD
+  C:005AH         SYMBOL        BACK
+  C:0047H         SYMBOL        COMWRITE
+  C:003AH         SYMBOL        DATAWRITE
+  C:0038H         SYMBOL        HERE
+  D:0090H         SYMBOL        P1
+  D:00A0H         SYMBOL        P2
+  C:0054H         SYMBOL        READY
+  C:0000H         LINE#         3
+  C:0002H         LINE#         4
+  C:0004H         LINE#         6
+  C:0006H         LINE#         7
+  C:0008H         LINE#         11
+  C:000AH         LINE#         12
+  C:000CH         LINE#         13
+  C:000EH         LINE#         14
+  C:0010H         LINE#         16
+  C:0012H         LINE#         17
+  C:0014H         LINE#         18
+  C:0016H         LINE#         19
+  C:0018H         LINE#         21
+  C:001AH         LINE#         22
+  C:001CH         LINE#         23
+  C:001EH         LINE#         24
+  C:0020H         LINE#         26
+  C:0022H         LINE#         27
+  C:0024H         LINE#         28
+  C:0026H         LINE#         29
+  C:0028H         LINE#         31
+  C:002AH         LINE#         32
+  C:002CH         LINE#         33
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/21/2018  15:52:41  PAGE 2
+
+
+  C:002EH         LINE#         34
+  C:0030H         LINE#         37
+  C:0032H         LINE#         38
+  C:0034H         LINE#         40
+  C:0036H         LINE#         41
+  C:0038H         LINE#         44
+  C:003AH         LINE#         49
+  C:003CH         LINE#         50
+  C:003EH         LINE#         51
+  C:0040H         LINE#         52
+  C:0042H         LINE#         53
+  C:0044H         LINE#         54
+  C:0046H         LINE#         55
+  C:0047H         LINE#         58
+  C:0049H         LINE#         59
+  C:004BH         LINE#         60
+  C:004DH         LINE#         61
+  C:004FH         LINE#         62
+  C:0051H         LINE#         63
+  C:0053H         LINE#         64
+  C:0054H         LINE#         67
+  C:0056H         LINE#         68
+  C:0058H         LINE#         69
+  C:005AH         LINE#         72
+  C:005CH         LINE#         73
+  C:005EH         LINE#         74
+  C:0061H         LINE#         75
+  -------         ENDMOD        LCD
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0062H BYTE ( 4%) *
+******************************************************************************
+
+Program Size: data=8.0 xdata=0 code=98
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

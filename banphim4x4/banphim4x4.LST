@@ -1,0 +1,193 @@
+A51 MACRO ASSEMBLER  BANPHIM4X4                                                           12/24/2018 23:50:40 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02
+OBJECT MODULE PLACED IN banphim4x4.OBJ
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE banphim4x4.asm SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+  0090                 1     c1 bit P1.0
+  0091                 2     c2 bit P1.1
+  0092                 3     c3 bit P1.2
+  0093                 4     c4 bit P1.3
+  0080                 5     h1 bit P0.0
+  0081                 6     h2 bit P0.1
+  0082                 7     h3 bit P0.2
+  0083                 8     h4 bit P0.3
+  00B2                 9     E bit P3.2
+  00B0                10     RS bit P3.0
+  00B1                11     RW bit P3.1
+                      12     
+0000                  13     org 00h
+0000 802E             14     sjmp main
+0030                  15     org 30h
+0030                  16     main:
+0030 7438             17     mov a,#38h 
+0032 11A4             18     acall comwrite
+0034 740E             19     mov a,#0eh
+0036 11A4             20     acall comwrite
+0038 75900F           21     mov P1,#0Fh
+003B C290             22     clr c1
+003D C291             23     clr c2
+003F C292             24     clr c3
+0041 C293             25     clr c4
+0043                  26     here:
+0043 1147             27     acall quetphim
+0045 80FC             28     sjmp here
+                      29     
+0047                  30     quetphim:
+                      31     
+                      32     
+                      33     
+0047                  34     PHIM0:
+0047 7430             35     mov a,#'0'
+0049 1197             36     acall datawrite
+004B 22               37     ret
+004C                  38     PHIM1:
+004C 7431             39     mov a,#'1'
+004E 1197             40     acall datawrite
+0050 22               41     ret
+0051                  42     PHIM2:
+0051 7432             43     mov a,#'2'
+0053 1197             44     acall datawrite
+0055 22               45     ret
+0056                  46     PHIM3:
+0056 7433             47     mov a,#'3'
+0058 1197             48     acall datawrite
+005A 22               49     ret
+005B                  50     PHIM4:
+005B 7434             51     mov a,#'4'
+005D 1197             52     acall datawrite
+005F 22               53     ret
+0060                  54     PHIM5:
+0060 7435             55     mov a,#'5'
+0062 1197             56     acall datawrite
+0064 22               57     ret
+0065                  58     PHIM6:
+A51 MACRO ASSEMBLER  BANPHIM4X4                                                           12/24/2018 23:50:40 PAGE     2
+
+0065 7436             59     mov a,#'6'
+0067 1197             60     acall datawrite
+0069 22               61     ret
+006A                  62     PHIM7:
+006A 7437             63     mov a,#'7'
+006C 1197             64     acall datawrite
+006E 22               65     ret
+006F                  66     PHIM8:
+006F 7438             67     mov a,#'8'
+0071 1197             68     acall datawrite
+0073 22               69     ret
+0074                  70     PHIM9:
+0074 7439             71     mov a,#'9'
+0076 1197             72     acall datawrite
+0078 22               73     ret
+0079                  74     PHIMA:
+0079 7441             75     mov a,#'A'
+007B 1197             76     acall datawrite
+007D 22               77     ret
+007E                  78     PHIMB:
+007E 7442             79     mov a,#'B'
+0080 1197             80     acall datawrite
+0082 22               81     ret
+0083                  82     PHIMC:
+0083 7443             83     mov a,#'C'
+0085 1197             84     acall datawrite
+0087 22               85     ret
+0088                  86     PHIMD:
+0088 7444             87     mov a,#'D'
+008A 1197             88     acall datawrite
+008C 22               89     ret
+008D                  90     PHIME:
+008D 7445             91     mov a,#'E'
+008F 1197             92     acall datawrite
+0091 22               93     ret
+0092                  94     PHIMF:
+0092 7446             95     mov a,#'F'
+0094 1197             96     acall datawrite
+0096 22               97     ret
+                      98     
+0097                  99     datawrite:
+0097 11B1            100     acall ready
+0099 F5A0            101     mov p2,a
+009B D2B0            102     setb rs
+009D C2B1            103     clr rw
+009F D2B2            104     setb e 
+00A1 C2B2            105     clr e
+00A3 22              106     ret
+                     107     
+00A4                 108     comwrite:
+00A4 11B1            109     acall ready
+00A6 F5A0            110     mov p2,a
+00A8 C2B0            111     clr rs
+00AA C2B1            112     clr rw
+00AC D2B2            113     setb e
+00AE C2B2            114     clr e
+00B0 22              115     ret
+                     116     
+                     117     
+00B1                 118     ready:
+00B1 D2A7            119     setb P2.7
+00B3 C2B0            120     clr rs
+00B5 D2B1            121     setb rw
+00B7                 122     back:
+00B7 C2B2            123     clr e
+00B9 D2B2            124     setb e
+A51 MACRO ASSEMBLER  BANPHIM4X4                                                           12/24/2018 23:50:40 PAGE     3
+
+00BB 20A7F9          125     jb P2.7, BACK
+00BE 22              126     ret
+                     127     
+                     128     end
+A51 MACRO ASSEMBLER  BANPHIM4X4                                                           12/24/2018 23:50:40 PAGE     4
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+BACK . . . . . . .  C ADDR   00B7H   A   
+C1 . . . . . . . .  B ADDR   0090H.0 A   
+C2 . . . . . . . .  B ADDR   0090H.1 A   
+C3 . . . . . . . .  B ADDR   0090H.2 A   
+C4 . . . . . . . .  B ADDR   0090H.3 A   
+COMWRITE . . . . .  C ADDR   00A4H   A   
+DATAWRITE. . . . .  C ADDR   0097H   A   
+E. . . . . . . . .  B ADDR   00B0H.2 A   
+H1 . . . . . . . .  B ADDR   0080H.0 A   
+H2 . . . . . . . .  B ADDR   0080H.1 A   
+H3 . . . . . . . .  B ADDR   0080H.2 A   
+H4 . . . . . . . .  B ADDR   0080H.3 A   
+HERE . . . . . . .  C ADDR   0043H   A   
+MAIN . . . . . . .  C ADDR   0030H   A   
+P0 . . . . . . . .  D ADDR   0080H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+P3 . . . . . . . .  D ADDR   00B0H   A   
+PHIM0. . . . . . .  C ADDR   0047H   A   
+PHIM1. . . . . . .  C ADDR   004CH   A   
+PHIM2. . . . . . .  C ADDR   0051H   A   
+PHIM3. . . . . . .  C ADDR   0056H   A   
+PHIM4. . . . . . .  C ADDR   005BH   A   
+PHIM5. . . . . . .  C ADDR   0060H   A   
+PHIM6. . . . . . .  C ADDR   0065H   A   
+PHIM7. . . . . . .  C ADDR   006AH   A   
+PHIM8. . . . . . .  C ADDR   006FH   A   
+PHIM9. . . . . . .  C ADDR   0074H   A   
+PHIMA. . . . . . .  C ADDR   0079H   A   
+PHIMB. . . . . . .  C ADDR   007EH   A   
+PHIMC. . . . . . .  C ADDR   0083H   A   
+PHIMD. . . . . . .  C ADDR   0088H   A   
+PHIME. . . . . . .  C ADDR   008DH   A   
+PHIMF. . . . . . .  C ADDR   0092H   A   
+QUETPHIM . . . . .  C ADDR   0047H   A   
+READY. . . . . . .  C ADDR   00B1H   A   
+RS . . . . . . . .  B ADDR   00B0H.0 A   
+RW . . . . . . . .  B ADDR   00B0H.1 A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

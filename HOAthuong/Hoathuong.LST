@@ -1,0 +1,79 @@
+A51 MACRO ASSEMBLER  HOATHUONG                                                            12/22/2018 13:29:37 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02
+OBJECT MODULE PLACED IN Hoathuong.OBJ
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE Hoathuong.asm SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     Org 00h
+0000 802E              2     Sjmp MAIN
+0023                   3     Org 0023h 
+0023 801B              4     Sjmp SERIAL
+0030                   5     Org 30h
+0030                   6     MAIN:
+0030 758920            7     Mov tmod,#20h ; ch?n timer 1 mode 2 là 8 bit auto reload
+0033 759850            8     Mov scon, #50h  ; ch?n mode 1 và enable nh?n d? li?u
+0036 758DFD            9     Mov th1, #0FDh  ; ch?n baudrate = 9600bps
+0039 75A890           10     Mov ie, #10010000B  ; enable ng?t n?i ti?p và ng?t all
+003C D28E             11     Setb tr1                        ; kh?i ch?y timer 1
+003E                  12     HERE:
+003E 80FE             13     Sjmp HERE               ; nh?y ??i ng?t
+                      14     
+0040                  15     SERIAL:                 ; ch??ng trình ng?t
+0040 209811           16     Jb ri, clear1                   ; ki?m tra c? nh?n
+0043 E599             17     Mov a, sbuf                     ; chuy?n d? li?u nh?n ?c vào thanh ghi a
+0045 B46000           18     Cjne a,#60h, next               ; so sánh kí t? v?a nh?n v?i giá tr? 60h
+0048                  19     Next:
+0048 20D70E           20     Jb cy, upper                    ; n?u cy>1 thì k t? là ch? th??ng và c?n vi?t hoa
+004B 30D710           21     Jnb cy, lower                           ; n?u cy=0 thì k t? là ch? hoa c?n ph?i vi?t th??ng
+004E F599             22     Mov sbuf, a                     ;
+0050 C299             23     Clr ti                          ; xóa c? truy?n
+                      24     
+0052 C298             25     Clr ri
+                      26     
+0054                  27     Clear1:
+0054 C298             28     Clr ri
+0056 C299             29     Clr ti
+0058 32               30     reti
+                      31     
+0059                  32     UPPER:
+0059 C2D7             33     Clr cy          ; clr c? nh?
+005B 9420             34     subb a, #20h ; chuy?n hoa kí t?
+005D 22               35     ret
+005E                  36     LOWER:
+005E C2D7             37     Clr CY
+0060 2420             38     add A,#20h      ; chuy?n k t? v? ch? th??ng
+0062 22               39     ret
+                      40     end
+A51 MACRO ASSEMBLER  HOATHUONG                                                            12/22/2018 13:29:37 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+CLEAR1 . . . . . .  C ADDR   0054H   A   
+CY . . . . . . . .  B ADDR   00D0H.7 A   
+HERE . . . . . . .  C ADDR   003EH   A   
+IE . . . . . . . .  D ADDR   00A8H   A   
+LOWER. . . . . . .  C ADDR   005EH   A   
+MAIN . . . . . . .  C ADDR   0030H   A   
+NEXT . . . . . . .  C ADDR   0048H   A   
+RI . . . . . . . .  B ADDR   0098H.0 A   
+SBUF . . . . . . .  D ADDR   0099H   A   
+SCON . . . . . . .  D ADDR   0098H   A   
+SERIAL . . . . . .  C ADDR   0040H   A   
+TH1. . . . . . . .  D ADDR   008DH   A   
+TI . . . . . . . .  B ADDR   0098H.1 A   
+TMOD . . . . . . .  D ADDR   0089H   A   
+TR1. . . . . . . .  B ADDR   0088H.6 A   
+UPPER. . . . . . .  C ADDR   0059H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

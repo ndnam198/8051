@@ -1,0 +1,110 @@
+A51 MACRO ASSEMBLER  LCD                                                                  12/21/2018 15:52:41 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02
+OBJECT MODULE PLACED IN lcd.OBJ
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE lcd.asm SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     org 00h
+                       2     
+0000 7438              3     mov a,#038h
+0002 1147              4     acall comwrite
+                       5     
+0004 740E              6     mov a,#0Eh
+0006 1147              7     acall comwrite
+                       8     
+                       9     
+                      10     
+0008 7444             11     mov a,#"D"
+000A 113A             12     acall datawrite
+000C 7406             13     mov a,#6h
+000E 1147             14     acall comwrite
+                      15     
+0010 744D             16     mov a,#"M"
+0012 113A             17     acall datawrite
+0014 7414             18     mov a,#14h
+0016 1147             19     acall comwrite
+                      20     
+0018 7456             21     mov a,#"V"
+001A 113A             22     acall datawrite
+001C 7406             23     mov a,#6h
+001E 1147             24     acall comwrite
+                      25     
+0020 7449             26     mov a,#"I"
+0022 113A             27     acall datawrite
+0024 7406             28     mov a,#6h
+0026 1147             29     acall comwrite
+                      30     
+0028 7445             31     mov a,#"E"
+002A 113A             32     acall datawrite
+002C 7406             33     mov a,#6h
+002E 1147             34     acall comwrite
+                      35     
+                      36     
+0030 7454             37     mov a,#"T"
+0032 113A             38     acall datawrite
+                      39     
+0034 740F             40     mov a,#0Fh
+0036 113A             41     acall datawrite
+                      42     
+0038                  43     here:
+0038 80FE             44     sjmp here
+                      45     
+                      46     
+                      47     
+003A                  48     datawrite:
+003A 1154             49     acall ready
+003C F590             50     mov p1,a
+003E D2A0             51     setb p2.0
+0040 C2A1             52     clr p2.1
+0042 D2A2             53     setb p2.2
+0044 C2A2             54     clr p2.2
+0046 22               55     ret
+                      56     
+0047                  57     comwrite:
+0047 1154             58     acall ready
+A51 MACRO ASSEMBLER  LCD                                                                  12/21/2018 15:52:41 PAGE     2
+
+0049 F590             59     mov p1,a
+004B C2A0             60     clr p2.0
+004D C2A1             61     clr p2.1
+004F D2A2             62     setb p2.2
+0051 C2A2             63     clr p2.2
+0053 22               64     ret 
+                      65     
+0054                  66     ready: 
+0054 D297             67     setb P1.7
+0056 C2A0             68     clr P2.0
+0058 D2A1             69     setb P2.1
+005A                  70     back:
+                      71     
+005A C2A2             72     clr p2.2
+005C D2A2             73     setb p2.2
+005E 2097F9           74     jb P1.7,back
+0061 22               75     ret 
+                      76     
+                      77     end
+                                             
+A51 MACRO ASSEMBLER  LCD                                                                  12/21/2018 15:52:41 PAGE     3
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+BACK . . . . . . .  C ADDR   005AH   A   
+COMWRITE . . . . .  C ADDR   0047H   A   
+DATAWRITE. . . . .  C ADDR   003AH   A   
+HERE . . . . . . .  C ADDR   0038H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+READY. . . . . . .  C ADDR   0054H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

@@ -1,0 +1,88 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              09/08/2019 00:21:47 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: A:\Learning Tools\KeiC 5\Keilc_C51\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTE
+                    -ND PRINT(.\Listings\main.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <REGX51.H>
+   2          #include <string.h>
+   3          
+   4          #define off   1
+   5          #define on  0
+   6          #define led1  P0_0
+   7          #define led2  P0_1
+   8          #define led3  P0_2
+   9          #define led4  P0_3
+  10          #define led5  P0_4
+  11          #define led6  P0_5
+  12          #define led7  P0_6
+  13          #define led8  P0_7
+  14          
+  15          void send(unsigned char a){
+  16   1        SBUF = a;
+  17   1        while(TI==0);
+  18   1        TI = 0;
+  19   1      }
+  20          
+  21          void send_data(char *str){
+  22   1        int i;
+  23   1        int j = strlen(str);
+  24   1        for(i=0;i<j;i++){
+  25   2          send(str[i]);
+  26   2        }
+  27   1      }
+  28          
+  29          unsigned char receive(void){
+  30   1        unsigned char c;
+  31   1        while(RI==0);
+  32   1        c = SBUF;
+  33   1        RI = 0;
+  34   1        return c;
+  35   1      }
+  36          
+  37          void main(){
+  38   1        unsigned char c;
+  39   1        TMOD = 0x20;      // su dung timer 1 o che do 8 bit tu nap lai
+  40   1        PCON = 0x80;      // smod =1 , x2 baudrate
+  41   1        TH1 = 0xFA;       // 4800 baud
+  42   1        SCON = 0x50;      // chon che do truyen 8 bit toc do timer 1, REN = 1 cho phep nhan du lieu
+  43   1        TR1 = 1;          
+  44   1        
+  45   1        while(1){
+  46   2            
+  47   2          c = receive();
+  48   2          send(c);
+  49   2          switch(c){
+  50   3            case '1': led1 = ~led1; break;
+  51   3            case '2': led2 = ~led2; break;
+  52   3            case '3': led3 = ~led3; break;
+  53   3            case '4': led4 = ~led4; break;
+  54   3            case '5': led5 = ~led5; break;
+C51 COMPILER V9.60.0.0   MAIN                                                              09/08/2019 00:21:47 PAGE 2   
+
+  55   3            case '6': led6 = ~led6; break;
+  56   3            case '7': led7 = ~led7; break;
+  57   3            case '8': led8 = ~led8; break;
+  58   3            default: led1=led3=led5=led7 = ~led1; led2=led4=led6=led8=~led1; break;
+  59   3              
+  60   3            }
+  61   2        }
+  62   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    196    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       5
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

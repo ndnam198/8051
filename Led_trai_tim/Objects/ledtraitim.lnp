@@ -1,0 +1,3 @@
+".\Objects\main.obj" 
+TO ".\Objects\ledtraitim" 
+PRINT(".\Listings\ledtraitim.m51") RAMSIZE(256) 

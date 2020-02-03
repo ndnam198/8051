@@ -1,0 +1,177 @@
+A51 MACRO ASSEMBLER  TRAFFIC                                                              12/07/2018 18:06:01 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02b
+OBJECT MODULE PLACED IN Traffic.OBJ
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE Traffic.a51 SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     org 000H
+0000 8011              2     sjmp main
+000B                   3     org 0BH
+000B 758CD8            4         mov TH0,#0D8H
+000E 758AEF            5         mov TL0,#0EFH
+0011 08                6         inc R0
+0012 32                7         reti
+  0030                 8     xanh_1 equ 30H
+  0031                 9     do_1   equ 31H
+  0032                10     xanh_2 equ 32H
+  0033                11     do_2   equ 33H
+  0034                12     vang   equ 34H
+                      13     
+0013                  14     main:
+0013 758901           15         mov TMOD,#01
+0016 758C3C           16         mov TH0,#3CH
+0019 758AAF           17         mov TL0,#0AFH
+001C C28D             18         clr TF0
+001E D28C             19         setb TR0
+0020 75A882           20         mov IE,#82H
+0023                  21     start: 
+0023 758021           22         mov P0,#21H   ;xuat led do2 xanh1
+0026 753019           23         mov xanh_1,#25
+0029 753124           24         mov do_1,#36
+002C 753221           25         mov xanh_2,#33
+002F 75331C           26         mov do_2,#28 
+0032 753403           27         mov vang,#3
+0035 A930             28         mov R1,xanh_1
+0037 AA33             29         mov R2,do_2
+0039                  30     loop_1: 
+0039 7800             31         mov R0,#0
+003B 120085           32         lcall chuyen_BCD
+                      33           
+003E                  34     again_1:    
+003E 120099           35         lcall xuat_led
+0041 B814FA           36         cjne R0,#20,again_1
+0044 1A               37         dec R2
+0045 D9F2             38         djnz R1,loop_1
+0047 758022           39         mov P0,#22H  ;xuat led vang sang
+004A A934             40         mov R1,vang
+004C 7800             41     loop_2: mov R0,#0
+004E 120085           42         lcall chuyen_BCD
+0051                  43     again_2: 
+0051 120099           44         lcall xuat_led
+0054 B814FA           45         cjne R0,#20,again_2
+0057 1A               46         dec R2
+0058 D9F2             47         djnz R1,loop_2
+005A 75800C           48         mov P0,#0CH      ;xuat led xanh2 do 1 sang
+005D A931             49         mov R1,do_1
+005F AA32             50         mov R2,xanh_2
+0061                  51     loop_3: 
+0061 78EF             52         mov R0,#0EFH
+0063 120085           53         lcall chuyen_BCD
+0066                  54     again_3:  
+0066 120099           55         lcall xuat_led
+0069 B814FA           56         cjne R0,#20,again_3
+006C 19               57         dec R1
+006D DAF2             58         djnz R2,loop_3
+A51 MACRO ASSEMBLER  TRAFFIC                                                              12/07/2018 18:06:01 PAGE     2
+
+006F 758014           59         mov P0,#14H         ;vang2 sang
+0072 AA34             60         mov R2,vang
+0074                  61     loop_4:
+0074 7800             62         mov R0,#0
+0076 120085           63         lcall chuyen_BCD
+0079                  64     again_4:   
+0079 120099           65         lcall xuat_led
+007C B814FA           66         cjne R0,#20,again_4
+007F 1A               67         dec R2
+0080 D9F2             68         djnz R1,loop_4
+                      69           
+0082 020023           70         ljmp start
+0085                  71     chuyen_BCD: 
+0085 E9               72         mov A,R1
+0086 75F00A           73         mov B,#10
+0089 84               74         div AB
+008A F550             75         mov 50H,A
+008C 85F051           76         mov 51H,B
+                      77                                                       
+008F EA               78         mov A,R2
+0090 75F00A           79         mov B,#10
+0093 84               80         div AB
+0094 F552             81         mov 52H,A
+0096 85F053           82         mov 53H,B
+                      83         
+0099                  84      xuat_led:
+0099 900123           85         mov DPTR,#123H
+009C E550             86         mov A,50H
+009E 93               87         movc A,@A+DPTR
+009F F5A0             88         mov P2,A
+00A1 75B001           89         mov P3,#01H
+00A4 1200D4           90         lcall delay
+00A7 75B000           91         mov P3,#00H
+                      92     
+00AA E551             93         mov A,51H
+00AC 93               94         movc A,@A+DPTR
+00AD F5A0             95         mov P2,A
+00AF 75B002           96         mov P3,#02H
+00B2 1200D4           97         lcall delay
+00B5 75B000           98         mov P3,#00H
+                      99     
+00B8 E552            100         mov A,52H
+00BA 93              101         movC A,@A+DPTR
+00BB F590            102         mov P1,A
+00BD 75B004          103         mov P3,#04H
+00C0 1200D4          104         lcall delay
+00C3 75B000          105         mov P3,#00H
+                     106         
+00C6 E553            107         mov A,53H
+00C8 93              108         movc A,@A+DPTR
+00C9 F590            109         mov P1,A
+00CB 75B008          110         mov P3,#08H
+00CE 1200D4          111         lcall delay
+00D1 75B000          112         mov P3,#00H
+                     113       
+00D4 7E64            114     delay:  mov R6,#100
+00D6 DEFE            115     lap:   djnz R6,lap
+00D8 22              116             ret
+                     117     
+0123                 118     org 123H
+0123 C0F9A4B0        119     DB  0C0H,0F9H,0A4H,0B0H,099H,092H,082H,0F8H,080H,090H
+0127 999282F8                
+012B 8090                    
+                     120     end
+A51 MACRO ASSEMBLER  TRAFFIC                                                              12/07/2018 18:06:01 PAGE     3
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+AGAIN_1. . . . . .  C ADDR   003EH   A   
+AGAIN_2. . . . . .  C ADDR   0051H   A   
+AGAIN_3. . . . . .  C ADDR   0066H   A   
+AGAIN_4. . . . . .  C ADDR   0079H   A   
+B. . . . . . . . .  D ADDR   00F0H   A   
+CHUYEN_BCD . . . .  C ADDR   0085H   A   
+DELAY. . . . . . .  C ADDR   00D4H   A   
+DO_1 . . . . . . .  N NUMB   0031H   A   
+DO_2 . . . . . . .  N NUMB   0033H   A   
+IE . . . . . . . .  D ADDR   00A8H   A   
+LAP. . . . . . . .  C ADDR   00D6H   A   
+LOOP_1 . . . . . .  C ADDR   0039H   A   
+LOOP_2 . . . . . .  C ADDR   004CH   A   
+LOOP_3 . . . . . .  C ADDR   0061H   A   
+LOOP_4 . . . . . .  C ADDR   0074H   A   
+MAIN . . . . . . .  C ADDR   0013H   A   
+P0 . . . . . . . .  D ADDR   0080H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+P3 . . . . . . . .  D ADDR   00B0H   A   
+START. . . . . . .  C ADDR   0023H   A   
+TF0. . . . . . . .  B ADDR   0088H.5 A   
+TH0. . . . . . . .  D ADDR   008CH   A   
+TL0. . . . . . . .  D ADDR   008AH   A   
+TMOD . . . . . . .  D ADDR   0089H   A   
+TR0. . . . . . . .  B ADDR   0088H.4 A   
+VANG . . . . . . .  N NUMB   0034H   A   
+XANH_1 . . . . . .  N NUMB   0030H   A   
+XANH_2 . . . . . .  N NUMB   0032H   A   
+XUAT_LED . . . . .  C ADDR   0099H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

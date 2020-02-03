@@ -1,0 +1,248 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    09/07/2019  20:08:23  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+A:\LEARNING TOOLS\KEIC 5\KEILC_C51\C51\BIN\BL51.EXE .\Objects\main.obj TO .\Objects\Interrupt_1 PRINT (.\Listings\Interr
+>> upt_1.m51)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  A:\LEARNING TOOLS\KEIC 5\KEILC_C51\C51\LIB\C51S.LIB (?C_STARTUP)
+  A:\LEARNING TOOLS\KEIC 5\KEILC_C51\C51\LIB\C51S.LIB (?C?UIDIV)
+  A:\LEARNING TOOLS\KEIC 5\KEILC_C51\C51\LIB\C51S.LIB (?C?SLDIV)
+  A:\LEARNING TOOLS\KEIC 5\KEILC_C51\C51\LIB\C51S.LIB (?C_INIT)
+  A:\LEARNING TOOLS\KEIC 5\KEILC_C51\C51\LIB\C51S.LIB (?C?ULDIV)
+
+
+LINK MAP OF MODULE:  .\Objects\Interrupt_1 (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     001BH     UNIT         ?DT?MAIN
+            DATA    0023H     0002H     UNIT         _DATA_GROUP_
+            IDATA   0025H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0003H     ABSOLUTE     
+                    0006H     0005H                  *** GAP ***
+            CODE    000BH     0003H     ABSOLUTE     
+                    000EH     07F2H                  *** GAP ***
+            CODE    0800H     0123H     UNIT         ?C?LIB_CODE
+            CODE    0923H     0094H     UNIT         ?PR?_TACHSO?MAIN
+            CODE    09B7H     008CH     UNIT         ?C_C51STARTUP
+            CODE    0A43H     0069H     UNIT         ?PR?ISR_ET0_HANDLER?MAIN
+            CODE    0AACH     0059H     UNIT         ?PR?DISPLAY_FREG?MAIN
+            CODE    0B05H     0044H     UNIT         ?C?LDIV
+            CODE    0B49H     0027H     UNIT         ?PR?_DELAY_MS?MAIN
+            CODE    0B70H     0016H     UNIT         ?PR?INTERRUPT_INIT?MAIN
+            CODE    0B86H     000DH     UNIT         ?PR?ISR_EX0_HANDLER?MAIN
+            CODE    0B93H     000CH     UNIT         ?C_INITSEG
+            CODE    0B9FH     000BH     UNIT         ?PR?_DELAY?MAIN
+            CODE    0BAAH     0008H     UNIT         ?PR?MAIN?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\Interrupt_1 (MAIN)
+
+
+SEGMENT                            DATA_GROUP 
+  +--> CALLED SEGMENT            START    LENGTH
+------------------------------------------------
+?PR?ISR_ET0_HANDLER?MAIN         -----    -----
+  +--> ?PR?_TACHSO?MAIN
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  09/07/2019  20:08:23  PAGE 2
+
+
+
+?PR?_TACHSO?MAIN                 0023H    0002H
+
+*** NEW ROOT ***************************************************
+
+?C_C51STARTUP                    -----    -----
+  +--> ?PR?MAIN?MAIN
+  +--> ?C_INITSEG
+
+?PR?MAIN?MAIN                    -----    -----
+  +--> ?PR?INTERRUPT_INIT?MAIN
+  +--> ?PR?DISPLAY_FREG?MAIN
+
+?PR?DISPLAY_FREG?MAIN            -----    -----
+  +--> ?PR?_DELAY_MS?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\Interrupt_1 (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  C:0923H         PUBLIC        _tachso
+  B:00A8H.7       PUBLIC        EA
+  C:0B9FH         PUBLIC        _delay
+  B:00A0H.0       PUBLIC        P2_0
+  B:00A0H.1       PUBLIC        P2_1
+  B:00A0H.2       PUBLIC        P2_2
+  B:00B0H.2       PUBLIC        P3_2
+  B:00A0H.3       PUBLIC        P2_3
+  B:00A0H.4       PUBLIC        P2_4
+  B:00A0H.5       PUBLIC        P2_5
+  D:0008H         PUBLIC        chuc
+  C:0BAAH         PUBLIC        main
+  D:0009H         PUBLIC        count
+  D:0089H         PUBLIC        TMOD
+  D:000BH         PUBLIC        tram
+  C:0A43H         PUBLIC        ISR_ET0_Handler
+  C:0B86H         PUBLIC        ISR_EX0_Handler
+  C:0AACH         PUBLIC        Display_Freg
+  B:00A8H.1       PUBLIC        ET0
+  C:0B70H         PUBLIC        Interrupt_Init
+  B:0088H.7       PUBLIC        TF1
+  D:008CH         PUBLIC        TH0
+  B:00A8H.0       PUBLIC        EX0
+  B:0088H.0       PUBLIC        IT0
+  D:008DH         PUBLIC        TH1
+  D:008AH         PUBLIC        TL0
+  D:000CH         PUBLIC        cn
+  D:008BH         PUBLIC        TL1
+  C:0B51H         PUBLIC        _delay_ms
+  B:0088H.4       PUBLIC        TR0
+  B:0088H.6       PUBLIC        TR1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  09/07/2019  20:08:23  PAGE 3
+
+
+  D:000DH         PUBLIC        dv
+  D:000EH         PUBLIC        a
+  D:0010H         PUBLIC        b
+  D:0012H         PUBLIC        tn
+  D:0013H         PUBLIC        so
+  D:001CH         PUBLIC        f
+  D:001EH         PUBLIC        i
+  D:0020H         PUBLIC        n
+  D:0021H         PUBLIC        t
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        x
+  C:0B9FH         LINE#         15
+  C:0B9FH         LINE#         16
+  C:0BA9H         LINE#         17
+  -------         ENDPROC       _DELAY
+  C:0B49H         SYMBOL        L?0028
+  -------         PROC          L?0027
+  -------         ENDPROC       L?0027
+  C:0B49H         SYMBOL        L?0028
+  -------         PROC          _DELAY_MS
+  D:0006H         SYMBOL        ms
+  C:0B51H         LINE#         19
+  C:0B51H         LINE#         20
+  C:0B5BH         LINE#         21
+  C:0B5EH         LINE#         22
+  C:0B61H         LINE#         23
+  C:0B64H         LINE#         24
+  C:0B66H         LINE#         25
+  C:0B69H         LINE#         26
+  C:0B6BH         LINE#         27
+  C:0B6DH         LINE#         28
+  C:0B6FH         LINE#         29
+  -------         ENDPROC       _DELAY_MS
+  -------         PROC          INTERRUPT_INIT
+  C:0B70H         LINE#         31
+  C:0B70H         LINE#         32
+  C:0B73H         LINE#         33
+  C:0B76H         LINE#         34
+  C:0B79H         LINE#         35
+  C:0B7BH         LINE#         36
+  C:0B7DH         LINE#         37
+  C:0B7FH         LINE#         39
+  C:0B81H         LINE#         40
+  C:0B83H         LINE#         41
+  C:0B85H         LINE#         43
+  -------         ENDPROC       INTERRUPT_INIT
+  -------         PROC          DISPLAY_FREG
+  C:0AACH         LINE#         45
+  C:0AACH         LINE#         48
+  C:0AB1H         LINE#         49
+  C:0ABCH         LINE#         50
+  C:0AC7H         LINE#         51
+  C:0AD2H         LINE#         52
+  C:0ADDH         LINE#         53
+  C:0AE8H         LINE#         54
+  C:0AF3H         LINE#         55
+  C:0B04H         LINE#         56
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  09/07/2019  20:08:23  PAGE 4
+
+
+  -------         ENDPROC       DISPLAY_FREG
+  -------         PROC          _TACHSO
+  D:0023H         SYMBOL        freg
+  C:0923H         LINE#         58
+  C:0927H         LINE#         59
+  C:0936H         LINE#         60
+  C:095BH         LINE#         61
+  C:0975H         LINE#         62
+  C:098FH         LINE#         63
+  C:09A9H         LINE#         64
+  C:09B6H         LINE#         65
+  -------         ENDPROC       _TACHSO
+  -------         PROC          MAIN
+  C:0BAAH         LINE#         67
+  C:0BAAH         LINE#         78
+  C:0BADH         LINE#         79
+  C:0BADH         LINE#         80
+  C:0BB0H         LINE#         82
+  -------         ENDPROC       MAIN
+  -------         PROC          ISR_EX0_HANDLER
+  C:0B86H         LINE#         87
+  C:0B88H         LINE#         88
+  C:0B90H         LINE#         95
+  -------         ENDPROC       ISR_EX0_HANDLER
+  -------         PROC          ISR_ET0_HANDLER
+  C:0A43H         LINE#         97
+  C:0A60H         LINE#         98
+  C:0A63H         LINE#         99
+  C:0A66H         LINE#         100
+  C:0A6EH         LINE#         101
+  C:0A70H         LINE#         102
+  C:0A78H         LINE#         103
+  C:0A7EH         LINE#         104
+  C:0A85H         LINE#         105
+  C:0A8BH         LINE#         106
+  C:0A91H         LINE#         107
+  C:0A91H         LINE#         108
+  -------         ENDPROC       ISR_ET0_HANDLER
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        ?C?UIDIV
+  C:0800H         PUBLIC        ?C?UIDIV
+  -------         ENDMOD        ?C?UIDIV
+
+  -------         MODULE        ?C?SLDIV
+  C:0B05H         PUBLIC        ?C?SLDIV
+  -------         ENDMOD        ?C?SLDIV
+
+  -------         MODULE        ?C?ULDIV
+  C:0891H         PUBLIC        ?C?ULDIV
+  -------         ENDMOD        ?C?ULDIV
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY?MAIN
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 01C4H BYTE (22%) *
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  09/07/2019  20:08:23  PAGE 5
+
+
+******************************************************************************
+
+Program Size: data=38.0 xdata=0 code=955
+LINK/LOCATE RUN COMPLETE.  1 WARNING(S),  0 ERROR(S)

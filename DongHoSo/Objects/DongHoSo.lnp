@@ -1,0 +1,3 @@
+".\Objects\main.obj" 
+TO ".\Objects\DongHoSo" 
+PRINT(".\Listings\DongHoSo.m51")

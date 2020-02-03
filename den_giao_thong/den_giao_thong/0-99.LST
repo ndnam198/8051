@@ -1,0 +1,77 @@
+A51 MACRO ASSEMBLER  0_99                                                                 12/16/2018 22:15:38 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02
+OBJECT MODULE PLACED IN 0-99.OBJ
+ASSEMBLER INVOKED BY: E:\lap trinh 8051\Keil 4\C51\BIN\A51.EXE 0-99.asm SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1               org 00h
+                       2     
+0000 7D64              3               mov r5,#100
+0002 900035            4               mov DPTR,#ma7thanh
+0005 7E00              5     naplai:   mov r6,#0
+0007 EE                6     lap:      mov a,r6
+0008 B46302            7               cjne a,#99,hienthi
+000B 80F8              8               sjmp naplai
+                       9     
+000D                  10     hienthi:
+000D 75F00A           11                     mov b,#10
+0010 84               12                     div ab
+                      13     ;hang chuc
+0011 D2B0             14                     setb p3.0
+0013 93               15                     movc a,@a+DPTR
+0014 F5A0             16                     mov p2,a
+0016 12002C           17                     lcall delay
+0019 C2B0             18                     clr p3.0
+                      19     
+                      20     ; hang don vi
+001B D2B1             21                     setb p3.1
+001D E5F0             22                     mov a,b
+001F 93               23                     movc a,@a+DPTR
+0020 F5A0             24                     mov p2,a
+0022 12002C           25                     lcall delay
+0025 C2B1             26                     clr p3.1
+                      27     
+0027 DDDE             28               djnz r5,lap
+0029 0E               29               inc r6
+002A 80DB             30               sjmp  lap
+                      31     
+002C                  32     delay:
+002C 7A02             33     BACK:           mov r2,#2
+002E 79FA             34                     mov r1,#250
+0030 D9FE             35     again:          djnz r1,again
+0032 DAF8             36                     DJNZ R2,BACK
+0034 22               37     RET
+                      38     
+0035                  39     ma7thanh:
+0035 C0F9A4B0         40     DB 0C0H,0F9H,0A4H,0B0H,99H,92H,82H,0F8H,80H,90H,89H; Chuyen doi BCD
+0039 999282F8                
+003D 809089                  
+                      41     
+                      42     end
+A51 MACRO ASSEMBLER  0_99                                                                 12/16/2018 22:15:38 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+AGAIN. . . . . . .  C ADDR   0030H   A   
+B. . . . . . . . .  D ADDR   00F0H   A   
+BACK . . . . . . .  C ADDR   002CH   A   
+DELAY. . . . . . .  C ADDR   002CH   A   
+HIENTHI. . . . . .  C ADDR   000DH   A   
+LAP. . . . . . . .  C ADDR   0007H   A   
+MA7THANH . . . . .  C ADDR   0035H   A   
+NAPLAI . . . . . .  C ADDR   0005H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+P3 . . . . . . . .  D ADDR   00B0H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

@@ -1,0 +1,327 @@
+A51 MACRO ASSEMBLER  LAM_LAI_DEM_2_SO                                                     12/16/2018 06:56:10 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02
+OBJECT MODULE PLACED IN lam_lai_dem_2_so.OBJ
+ASSEMBLER INVOKED BY: E:\lap trinh 8051\Keil 4\C51\BIN\A51.EXE lam_lai_dem_2_so.asm SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     ; Ta co thoi gian den do sang bang thoi gian den xanh sang cong thoi gian den vang sang
+                       2     ; Thoi gian den do sang tu 00-30 la 31 giay
+                       3     ; Thoi gian den xanh sang tu 00-25 la 26 giay
+                       4     ; suy ra thoi gian den vang sang la 31-26=5 giay hay tu 00-04
+0000                   5     org 00h         ; bat dau chuong trinh
+0000 900161            6     mov DPTR, #ma7thanh      ; nap ma led 7 thanh vao thanh ghi DPTR
+                       7     
+                       8     
+0003                   9     chedo1:
+0003 120158           10     lcall delay     ; tao tre giua giay 00 cua den vang va giay 30 cua den do tren duong 1
+0006 7DDF             11     mov r5,#223     ; so lan quet led doi voi moi mot so
+0008 7E1E             12     mov r6,#30      ; thoi gian bat den do luu trong r6
+000A 7919             13     mov r1,#25      ; thoi gian bat den xanh luu trong r1
+000C 7F04             14     mov r7,#4       ; thoi gian bat den vang luu trong r7
+000E                  15     chaychedo1:     ; tao vong lap de thuc hien che do 1
+000E E9               16     mov a,r1        ; nap lai thoi gian cho den xanh de kiem tra dieu kien nhay sang che so 2 
+000F B4FF02           17     cjne a,#-1,congviec1; den xanh nhay den -1 thi chuyen sang che do 2 neu khong thi di vao hi
+                             enthi1 de thuc hien cong viec
+0012 8048             18     sjmp chedo2                ; nhay sang che so 2
+                      19     
+                      20     
+0014                  21     congviec1: ; bat den do duong 1 va den xanh duong 2 va dem giay
+                      22     
+0014 D2B1             23     setb    p3.1; bat den do duong 1
+0016 D2B3             24     setb    p3.3; bat den xanh duong 2
+0018 C2B0             25     clr     p3.0 ; tat cac den con lai
+001A C2B2             26     clr             p3.2
+001C C2B4             27     clr             p3.4
+001E C2B5             28     clr             p3.5
+                      29     
+                      30     ;hien thi led 7 thanh duong 1
+                      31     ;hien thi so hang chuc 
+0020 EE               32     mov a,r6
+0021 75F00A           33     mov b,#10
+0024 84               34     div ab
+0025 93               35     movc a,@a+DPTR
+0026 D291             36     setb p1.1
+0028 F580             37     mov p0,a
+002A 120158           38     lcall delay
+002D C291             39     clr p1.1
+                      40     
+                      41     ;hien thi so hang don vi
+002F D290             42     setb p1.0
+0031 E5F0             43     mov a,b
+0033 93               44     movc a,@a+DPTR
+0034 F580             45     mov p0,a
+0036 120158           46     lcall delay
+0039 C290             47     clr p1.0
+                      48     
+                      49     ; hien thi led 7 thanh duong 2
+                      50     ; hien thi so hang chuc
+003B E9               51     mov a,r1
+003C 75F00A           52     mov b,#10
+003F 84               53     div ab
+0040 93               54     movc a,@a+DPTR
+0041 D293             55     setb p1.3
+0043 F5A0             56     mov p2,a
+0045 120158           57     lcall delay
+A51 MACRO ASSEMBLER  LAM_LAI_DEM_2_SO                                                     12/16/2018 06:56:10 PAGE     2
+
+0048 C293             58     clr p1.3
+                      59     
+                      60     ; hien thi so hang don vi
+004A D292             61     setb p1.2
+004C E5F0             62     mov a,b
+004E 93               63     movc a,@a+DPTR
+004F F5A0             64     mov p2,a
+0051 120158           65     lcall delay
+0054 C292             66     clr p1.2
+                      67     
+                      68     
+0056 DDB6             69     djnz r5,chaychedo1 ; quet led
+0058 1E               70     dec r6                     ; giam thoi gian den do sang di 1 don vi
+0059 19               71     dec r1                     ; giam thoi gian den xanh sang di 1 don vi
+005A 80B2             72     sjmp chaychedo1
+                      73     
+                      74     
+005C                  75     chedo2:
+005C 120158           76     lcall delay             ; tao do tre giua giay 05 voi giay 04 cua den do duong 1
+005F                  77     chaychedo2:             ; tao vong lap de thuc hien che do 2 
+005F EF               78     mov a,r7                ; nap lai thoi gian sang den vang de kiem tra dieu kien nhay sang c
+                             he so 3
+0060 B4FF06           79     cjne a,#-1,congviec2; thuc hien hien cong viec 2 cho den khi den vang = 00
+0063 7919             80     mov r1,#25       ; nap lai thoi gian den xanh bat dau chay truoc khi vao cho che do 3
+0065 7E1E             81     mov r6,#30       ; nap lai thoi gian den do bat dau chay truoc khi vao che do 3
+0067 8048             82     sjmp chedo3      ; nhay vao che do 3
+                      83     
+                      84     
+0069                  85     congviec2:       ; bat den do duong 1 va den vang duong 2 trong 5s va dem giay
+                      86     
+0069 D2B1             87     setb    p3.1 ; bat den do duong 1
+006B D2B5             88     setb    p3.5 ; bat den vang duong 2
+006D C2B0             89     clr     p3.0 ; tat cac den con lai
+006F C2B2             90     clr             p3.2
+0071 C2B4             91     clr             p3.4
+0073 C2B3             92     clr             p3.3
+                      93     
+                      94     ; hien thi thoi gian tren duong 1
+                      95     ; hien thi so hang chuc
+0075 EE               96     mov a,r6
+0076 75F00A           97     mov b,#10
+0079 84               98     div ab
+007A 93               99     movc a,@a+DPTR
+007B D291            100     setb p1.1
+007D F580            101     mov p0,a
+007F 120158          102     lcall delay
+0082 C291            103     clr p1.1
+                     104     ; hien thi so hang don vi
+0084 D290            105     setb p1.0
+0086 E5F0            106     mov a,b
+0088 93              107     movc a,@a+DPTR
+0089 F580            108     mov p0,a
+008B 120158          109     lcall delay
+008E C290            110     clr p1.0
+                     111     
+                     112     ; hien thi thoi gian duong 2
+                     113     ; hien thi so hang chuc
+0090 EF              114     mov a,r7
+0091 75F00A          115     mov b,#10
+0094 84              116     div ab
+0095 93              117     movc a,@a+DPTR
+0096 D293            118     setb p1.3
+0098 F5A0            119     mov p2,a
+009A 120158          120     lcall delay
+009D C293            121     clr p1.3
+                     122     ;hien thi so hang don vi
+A51 MACRO ASSEMBLER  LAM_LAI_DEM_2_SO                                                     12/16/2018 06:56:10 PAGE     3
+
+009F D292            123     setb p1.2
+00A1 E5F0            124     mov a,b
+00A3 93              125     movc a,@a+DPTR
+00A4 F5A0            126     mov p2,a
+00A6 120158          127     lcall delay
+00A9 C292            128     clr p1.2
+                     129     
+                     130     
+00AB DDB2            131     djnz r5,chaychedo2 ; quet led
+00AD 1E              132     dec r6                     ; giam thoi gian den do
+00AE 1F              133     dec r7                     ; giam thoi gian den vang
+00AF 80AE            134     sjmp chaychedo2    ; nhay vao chaychedo2
+                     135     
+00B1                 136     chedo3:
+00B1 120158          137     lcall delay                ; tao thoi gian tre giua giay thu 00 cua den do duong 1 voi giay
+                              25 den xanh duong 1
+00B4                 138     chaychedo3:        ; tao vong lap thuc hien che do 3 
+00B4 EE              139     mov a,r6                   ; nap lai gia tri den do de kiem tra dieu kien nhay den che do 4
+00B5 B40406          140     cjne a,#4,congviec3; thuc hien cong viec 3 den khi gia tri den do bang 4
+00B8 7F04            141     mov r7,#4                  ; nap lai thoi gian den vang duong1 bat dau chay truoc khi vao c
+                             he do 4
+00BA 7E05            142     mov r6,#5                  ; nap lai thoi gian den do duong 2 bat dau chay truoc kho vao ch
+                             e do 4
+00BC 8048            143     sjmp chedo4                ; nhay vao che do 4
+                     144     
+                     145     
+00BE                 146     congviec3:         ; bat den xang duong 1 va den do duong 2 trong 25 giay va dem giay
+00BE D2B0            147     setb    p3.0       ; bat den xanh duong 1
+00C0 D2B4            148     setb    p3.4       ; bat den do duong 2
+00C2 C2B1            149     clr     p3.1       ; tat cac den con lai
+00C4 C2B2            150     clr             p3.2
+00C6 C2B3            151     clr             p3.3
+00C8 C2B5            152     clr             p3.5
+                     153     
+                     154     ;hien thi thoi gian duong 1
+                     155     ; hien thi so hang chuc
+00CA E9              156     mov a,r1
+00CB 75F00A          157     mov b,#10
+00CE 84              158     div ab
+00CF 93              159     movc a,@a+DPTR
+00D0 D291            160     setb p1.1
+00D2 F580            161     mov p0,a
+00D4 120158          162     lcall delay
+00D7 C291            163     clr p1.1
+                     164     ;hien thi so hang don vi
+00D9 D290            165     setb p1.0
+00DB E5F0            166     mov a,b
+00DD 93              167     movc a,@a+DPTR
+00DE F580            168     mov p0,a
+00E0 120158          169     lcall delay
+00E3 C290            170     clr p1.0
+                     171     
+                     172     ;hien thi thoi gian duong 2
+                     173     ; hien thi so hang chuc
+00E5 EE              174     mov a,r6
+00E6 75F00A          175     mov b,#10
+00E9 84              176     div ab
+00EA 93              177     movc a,@a+DPTR
+00EB D293            178     setb p1.3
+00ED F5A0            179     mov p2,a
+00EF 120158          180     lcall delay
+00F2 C293            181     clr p1.3
+                     182     ;hien thi so hang don vi
+00F4 D292            183     setb p1.2
+00F6 E5F0            184     mov a,b
+00F8 93              185     movc a,@a+DPTR
+A51 MACRO ASSEMBLER  LAM_LAI_DEM_2_SO                                                     12/16/2018 06:56:10 PAGE     4
+
+00F9 F5A0            186     mov p2,a
+00FB 120158          187     lcall delay
+00FE C292            188     clr p1.2
+                     189     
+                     190     
+0100 DDB2            191     djnz r5,chaychedo3 ;quet led
+0102 1E              192     dec r6                    ; giam thoi gian den do
+0103 19              193     dec r1                    ;giam thoi gian den xanh
+0104 80AE            194     sjmp chaychedo3   ; nhay vao chaychedo3
+                     195     
+0106                 196     chedo4:
+0106 120158          197     lcall delay; tao thoi gian tre giua giay 00 cua den xanh voi giay 04 cua den vang duong 1 
+0109                 198     chaychedo4:; tao vong lap de thuc hien che do 4
+                     199     
+0109 EE              200     mov a,r6  ; nap lai thoi gian den do de kiem tra dieu kien nhay vao che do 1
+010A B40003          201     cjne a,#0,congviec4; thuc hien cong viec 4 cho den khi den do  chay ve 00
+010D 020003          202     ljmp chedo1                ; nhay ve che do 1
+                     203     
+                     204     
+0110                 205     congviec4:; bat den vang duong 1 den do duong 2 trong 5 giay va dem giay
+0110 D2B2            206     setb    p3.2; bat den vang duong 1
+0112 D2B4            207     setb    p3.4; bat den do duong 2
+0114 C2B1            208     clr     p3.1; tat cac den con lai
+0116 C2B0            209     clr             p3.0
+0118 C2B3            210     clr             p3.3
+011A C2B5            211     clr             p3.5
+                     212     ;hien thi thoi gian duong 1
+                     213     ;hien thi so hang chuc
+011C EF              214     mov a,r7
+011D 75F00A          215     mov b,#10
+0120 84              216     div ab
+0121 93              217     movc a,@a+DPTR
+0122 D291            218     setb p1.1
+0124 F580            219     mov p0,a
+0126 120158          220     lcall delay
+0129 C291            221     clr p1.1
+                     222     ;hien thi so hang don vi
+012B D290            223     setb p1.0
+012D E5F0            224     mov a,b
+012F 93              225     movc a,@a+DPTR
+0130 F580            226     mov p0,a
+0132 120158          227     lcall delay
+0135 C290            228     clr p1.0
+                     229     
+                     230     ; hien thi thoi gian duong 2
+                     231     ; hien thi so hang chuc
+0137 EE              232     mov a,r6
+0138 75F00A          233     mov b,#10
+013B 84              234     div ab
+013C 93              235     movc a,@a+DPTR
+013D D293            236     setb p1.3
+013F F5A0            237     mov p2,a
+0141 120158          238     lcall delay
+0144 C293            239     clr p1.3
+                     240     ;hien thi so hang don vi
+0146 D292            241     setb p1.2
+0148 E5F0            242     mov a,b
+014A 93              243     movc a,@a+DPTR
+014B F5A0            244     mov p2,a
+014D 120158          245     lcall delay
+0150 C292            246     clr p1.2
+                     247     
+                     248     
+0152 DDB5            249     djnz r5,chaychedo4         ;quet led
+0154 1E              250     dec r6                             ;giam thoi gian den do
+0155 1F              251     dec r7                             ; giam thoi gian den vang
+A51 MACRO ASSEMBLER  LAM_LAI_DEM_2_SO                                                     12/16/2018 06:56:10 PAGE     5
+
+0156 80B1            252     sjmp chaychedo4            ; nhay vao chaychedo4
+                     253     
+                     254     
+                     255     ;========ham delay========
+0158                 256     delay:
+0158 7B01            257     mov r3,#1
+015A 78FA            258     back: mov r0,#250
+015C D8FE            259     again:djnz r0,again
+015E DBFA            260     djnz r3,back
+0160 22              261     ret
+                     262     
+0161 C0F9A4B0        263     ma7thanh:       DB 0C0H,0F9H,0A4H,0B0H,99H,92H,82H,0F8H,80H,90H,89H; Chuyen doi BCD
+0165 999282F8                
+0169 809089                  
+                     264     end
+                             
+                             
+                             
+                             
+A51 MACRO ASSEMBLER  LAM_LAI_DEM_2_SO                                                     12/16/2018 06:56:10 PAGE     6
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+AGAIN. . . . . . .  C ADDR   015CH   A   
+B. . . . . . . . .  D ADDR   00F0H   A   
+BACK . . . . . . .  C ADDR   015AH   A   
+CHAYCHEDO1 . . . .  C ADDR   000EH   A   
+CHAYCHEDO2 . . . .  C ADDR   005FH   A   
+CHAYCHEDO3 . . . .  C ADDR   00B4H   A   
+CHAYCHEDO4 . . . .  C ADDR   0109H   A   
+CHEDO1 . . . . . .  C ADDR   0003H   A   
+CHEDO2 . . . . . .  C ADDR   005CH   A   
+CHEDO3 . . . . . .  C ADDR   00B1H   A   
+CHEDO4 . . . . . .  C ADDR   0106H   A   
+CONGVIEC1. . . . .  C ADDR   0014H   A   
+CONGVIEC2. . . . .  C ADDR   0069H   A   
+CONGVIEC3. . . . .  C ADDR   00BEH   A   
+CONGVIEC4. . . . .  C ADDR   0110H   A   
+DELAY. . . . . . .  C ADDR   0158H   A   
+MA7THANH . . . . .  C ADDR   0161H   A   
+P0 . . . . . . . .  D ADDR   0080H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+P3 . . . . . . . .  D ADDR   00B0H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

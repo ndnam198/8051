@@ -1,0 +1,6 @@
+".\Objects\main.obj",
+".\Objects\LCD16x2.obj",
+".\Objects\ADC0808.obj",
+".\Objects\delay.obj" 
+TO ".\Objects\Do_Dong_Ap_ADC0808" 
+PRINT(".\Listings\Do_Dong_Ap_ADC0808.m51") RAMSIZE(256) 

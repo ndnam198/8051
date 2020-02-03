@@ -1,0 +1,100 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              09/06/2019 23:54:05 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: A:\Learning Tools\KeiC 5\Keilc_C51\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTE
+                    -ND PRINT(.\Listings\main.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <REGX51.H>
+   2          
+   3          
+   4          #define hour    P3_5
+   5          #define min     P3_6
+   6          #define second  P3_7
+   7          
+   8          #define led_gio1      P2_0
+   9          #define led_gio2      P2_1
+  10          #define led_phut1   P2_2
+  11          #define led_phut2   P2_3
+  12          #define led_giay1   P2_4
+  13          #define led_giay2   P2_5
+  14          
+  15          #define on  0
+  16          #define off 1
+  17          
+  18          char so[] = {0xBF, 0x86, 0xDB, 0XCF, 0XE6, 0XED, 0XFD, 0X87, 0XFF, 0XEF};
+  19          
+  20          void delay_ms(int ms){
+  21   1        while(ms--){
+  22   2          TMOD = 0x01;
+  23   2          TH0 = 0xfc;
+  24   2          TL0 = 0x18;
+  25   2          TR0 = 1;
+  26   2          while(!TF0);
+  27   2          TF0 = 0;
+  28   2          TR0 = 0;
+  29   2        }
+  30   1      }
+  31          
+  32          void hienThi(unsigned char gio, unsigned char phut, unsigned char giay){
+  33   1          unsigned char chuc_gio, dv_gio, chuc_phut, dv_phut, chuc_giay, dv_giay, i;
+  34   1          chuc_gio = gio/10; dv_gio = gio%10;
+  35   1          chuc_phut = phut/10; dv_phut = phut%10;
+  36   1          chuc_giay = giay/10; dv_giay = giay%10;
+  37   1          for(i=0;i<30;i++){
+  38   2            led_gio1 = on;  P0 = so[chuc_gio];  delay_ms(5);    led_gio1 = off; 
+  39   2            led_gio2 = on;  P0 = so[dv_gio];    delay_ms(5);    led_gio2 = off; 
+  40   2            led_phut1 = on; P0 = so[chuc_phut]; delay_ms(5);    led_phut1 = off; 
+  41   2            led_phut2 = on; P0 = so[dv_phut];   delay_ms(5);    led_phut2 = off;
+  42   2            led_giay1 = on; P0 = so[chuc_giay]; delay_ms(5);    led_giay1 = off;
+  43   2            led_giay2 = on; P0 = so[dv_giay];   delay_ms(5);    led_giay2 = off;
+  44   2          }
+  45   1        }
+  46          
+  47          void main(){
+  48   1        unsigned char  gio = 0, phut = 0, giay = 0;
+  49   1        P3_0 = 0; 
+  50   1        while(1){
+  51   2          P3_0 = ~P3_0;
+  52   2          giay ++;
+  53   2          hienThi(gio, phut, giay); 
+  54   2          if(giay==59) phut++;
+C51 COMPILER V9.60.0.0   MAIN                                                              09/06/2019 23:54:05 PAGE 2   
+
+  55   2          if(phut==59) gio++;
+  56   2          if(hour == 0) {
+  57   3            if(hour==0) gio++;
+  58   3            delay_ms(50);
+  59   3          }
+  60   2          if(min == 0 )  {
+  61   3            if(min==0) phut++;
+  62   3            delay_ms(50);
+  63   3          }
+  64   2          if(second == 0)  {
+  65   3            if(second==0) giay++;
+  66   3            delay_ms(50);
+  67   3          }
+  68   2          if(phut>59) phut = 0;
+  69   2          if(giay>59) giay = 0;
+  70   2          if(gio>23) gio = 0;
+  71   2        }
+  72   1        
+  73   1      }
+  74            
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    287    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     10       6
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

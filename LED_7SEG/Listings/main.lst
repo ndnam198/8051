@@ -1,0 +1,80 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              09/02/2019 17:15:46 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: A:\Learning Tools\KeiC 5\Keilc_C51\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTE
+                    -ND PRINT(.\Listings\main.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <REGX51.H>
+   2          #define tat   1
+   3          #define sang  0
+   4          char so[] = {0x40, 0x79, 0X24, 0X30, 0X19, 0X12, 0X02, 0X78, 0X00, 0X10}; // tuong ung 01,2,3,4,5,6,7,8,9
+   5          char maquet[] = {0x7F, 0xBF, 0XDF, 0XEF, 0XF7, 0XFB, 0XFD, 0XFE};  //chu so hang dv, chuc ,tram, ngan, chu
+             -c ngan, tram ngan, trieu, chuc trieu
+   6          unsigned char chuSo[7];     //so led muon hien thi
+   7          unsigned long dem, temp;    //temp bien tach cac chu so, 
+   8          
+   9          void delay_ms(unsigned int ms)
+  10          {
+  11   1       unsigned int x,y;
+  12   1       for(x=0;x<ms;x++)
+  13   1       for(y=0;y<=110;y++);
+  14   1      }
+  15          
+  16          void delay(int time){
+  17   1        while(time--);
+  18   1      }
+  19          
+  20          void tachChuSo(unsigned long temp, int soLed){
+  21   1        int i;
+  22   1            for(i=0;i<soLed;i++){
+  23   2              chuSo[i]=temp%10; //sau khi tach se luu cac gia tri vao mang chuSo[]
+  24   2              temp=temp/10;
+  25   2            }
+  26   1      }
+  27          
+  28          //----------------------------------------------------
+  29          void quetLed(int soLed){
+  30   1        int i,j;
+  31   1          for(i=0;i<25;i++){      // lap lai viec nay 25 lan de tang muc do luu anh trong mat
+  32   2            for(j=0; j <soLed; j++){// lan luot hien thi tung led trong 100
+  33   3              P2=maquet[j];         //enable led thu j
+  34   3              P0=so[chuSo[j]];      //hien thi chu so tuong ung voi x10 
+  35   3              delay(10);
+  36   3              P2 = 0xff;            //vo hieu het cac led 
+  37   3              }
+  38   2          }
+  39   1      }
+  40          void main(){
+  41   1      //  int\ i;
+  42   1      //  P2=maquet[0];
+  43   1      //  for(i = 0; i < 10; i++){
+  44   1      //  P0= chuSo[i];
+  45   1      //    delay_ms(1000);
+  46   1      //  }
+  47   1        while(1){
+  48   2            for(dem = 0; dem <= 99999999; dem++){
+  49   3            tachChuSo(dem,7);
+  50   3            quetLed(7);
+  51   3          }
+  52   2        }
+  53   1      }
+C51 COMPILER V9.60.0.0   MAIN                                                              09/02/2019 17:15:46 PAGE 2   
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    287    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     33      10
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

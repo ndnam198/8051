@@ -1,0 +1,112 @@
+A51 MACRO ASSEMBLER  DEM_SO                                                               12/14/2018 15:58:36 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02
+OBJECT MODULE PLACED IN dem_so.OBJ
+ASSEMBLER INVOKED BY: E:\lap trinh 8051\Keil 4\C51\BIN\A51.EXE dem_so.asm SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     org 00h
+0000 90005A            2     mov DPTR, #ma7thanh
+0003 7D64              3     mov r5,#100
+0005                   4     chaylai:
+0005 7E1E              5     mov r6,#30
+0007 7919              6     mov r1,#25
+0009                   7     lap:
+0009                   8     dem30:
+0009 EE                9     mov a,r6
+000A B4FF02           10     cjne a,#-1,dem25
+000D 7E1E             11     mov r6,#30
+000F                  12     dem25: 
+000F E9               13     mov a,r1
+0010 B4FF02           14     cjne a,#-1,hienthi
+0013 7919             15     mov r1,#25
+                      16     
+                      17     
+0015                  18     hienthi:
+0015                  19     hienthidem30:
+                      20     
+0015 EE               21     mov a,r6
+0016 75F00A           22     mov b,#10
+0019 84               23     div ab
+001A 93               24     movc a,@a+DPTR
+001B D291             25     setb p1.1
+001D F580             26     mov p0,a
+001F 120051           27     lcall delay
+0022 C291             28     clr p1.1
+                      29     
+0024 D290             30     setb p1.0
+0026 E5F0             31     mov a,b
+0028 93               32     movc a,@a+DPTR
+0029 F580             33     mov p0,a
+002B 120051           34     lcall delay
+002E C290             35     clr p1.0
+0030                  36     hienthidem25:
+0030 E9               37     mov a,r1
+0031 75F00A           38     mov b,#10
+0034 84               39     div ab
+0035 93               40     movc a,@a+DPTR
+0036 D293             41     setb p1.3
+0038 F5A0             42     mov p2,a
+003A 120051           43     lcall delay
+003D C293             44     clr p1.3
+                      45     
+003F D292             46     setb p1.2
+0041 E5F0             47     mov a,b
+0043 93               48     movc a,@a+DPTR
+0044 F5A0             49     mov p2,a
+0046 120051           50     lcall delay
+0049 C292             51     clr p1.2
+                      52     
+                      53     
+004B DDBC             54     djnz r5,lap
+004D 1E               55     dec r6
+004E 19               56     dec r1
+004F 80B8             57     sjmp lap
+                      58     
+A51 MACRO ASSEMBLER  DEM_SO                                                               12/14/2018 15:58:36 PAGE     2
+
+0051                  59     delay:
+0051 7B03             60     mov r3,#3
+0053 7819             61     back: mov r0,#25
+0055 D8FE             62     again:djnz r0,again
+0057 DBFA             63     djnz r3,back
+0059 22               64     ret
+005A C0F9A4B0         65     ma7thanh:       DB 0C0H,0F9H,0A4H,0B0H,99H,92H,82H,0F8H,80H,90H,89H; Chuyen doi BCD
+005E 999282F8                
+0062 809089                  
+                      66     end
+                             
+                             
+                             
+                             
+A51 MACRO ASSEMBLER  DEM_SO                                                               12/14/2018 15:58:36 PAGE     3
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+AGAIN. . . . . . .  C ADDR   0055H   A   
+B. . . . . . . . .  D ADDR   00F0H   A   
+BACK . . . . . . .  C ADDR   0053H   A   
+CHAYLAI. . . . . .  C ADDR   0005H   A   
+DELAY. . . . . . .  C ADDR   0051H   A   
+DEM25. . . . . . .  C ADDR   000FH   A   
+DEM30. . . . . . .  C ADDR   0009H   A   
+HIENTHI. . . . . .  C ADDR   0015H   A   
+HIENTHIDEM25 . . .  C ADDR   0030H   A   
+HIENTHIDEM30 . . .  C ADDR   0015H   A   
+LAP. . . . . . . .  C ADDR   0009H   A   
+MA7THANH . . . . .  C ADDR   005AH   A   
+P0 . . . . . . . .  D ADDR   0080H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

@@ -1,0 +1,177 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    09/06/2019  23:54:05  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+A:\LEARNING TOOLS\KEIC 5\KEILC_C51\C51\BIN\BL51.EXE .\Objects\main.obj TO .\Objects\DongHoSo PRINT (.\Listings\DongHoSo.
+>> m51)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  A:\LEARNING TOOLS\KEIC 5\KEILC_C51\C51\LIB\C51S.LIB (?C_STARTUP)
+  A:\LEARNING TOOLS\KEIC 5\KEILC_C51\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  .\Objects\DongHoSo (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     000AH     UNIT         ?DT?MAIN
+            DATA    0012H     0006H     UNIT         _DATA_GROUP_
+            IDATA   0018H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     008CH     UNIT         ?C_C51STARTUP
+            CODE    088CH     007FH     UNIT         ?PR?MAIN?MAIN
+            CODE    090BH     0079H     UNIT         ?PR?_HIENTHI?MAIN
+            CODE    0984H     0027H     UNIT         ?PR?_DELAY_MS?MAIN
+            CODE    09ABH     000DH     UNIT         ?C_INITSEG
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\DongHoSo (MAIN)
+
+
+SEGMENT                          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH
+----------------------------------------------
+?C_C51STARTUP                  -----    -----
+  +--> ?PR?MAIN?MAIN
+  +--> ?C_INITSEG
+
+?PR?MAIN?MAIN                  0012H    0003H
+  +--> ?PR?_HIENTHI?MAIN
+  +--> ?PR?_DELAY_MS?MAIN
+
+?PR?_HIENTHI?MAIN              0015H    0003H
+  +--> ?PR?_DELAY_MS?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\DongHoSo (MAIN)
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  09/06/2019  23:54:05  PAGE 2
+
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  B:00A0H.0       PUBLIC        P2_0
+  B:00B0H.0       PUBLIC        P3_0
+  B:00A0H.1       PUBLIC        P2_1
+  B:00A0H.2       PUBLIC        P2_2
+  B:00A0H.3       PUBLIC        P2_3
+  B:00A0H.4       PUBLIC        P2_4
+  B:00A0H.5       PUBLIC        P2_5
+  B:00B0H.5       PUBLIC        P3_5
+  B:00B0H.6       PUBLIC        P3_6
+  B:00B0H.7       PUBLIC        P3_7
+  C:088CH         PUBLIC        main
+  D:0089H         PUBLIC        TMOD
+  B:0088H.5       PUBLIC        TF0
+  D:008CH         PUBLIC        TH0
+  C:090BH         PUBLIC        _hienThi
+  D:008AH         PUBLIC        TL0
+  C:098CH         PUBLIC        _delay_ms
+  B:0088H.4       PUBLIC        TR0
+  D:0008H         PUBLIC        so
+  C:0984H         SYMBOL        L?0026
+  -------         PROC          L?0025
+  -------         ENDPROC       L?0025
+  C:0984H         SYMBOL        L?0026
+  -------         PROC          _DELAY_MS
+  D:0006H         SYMBOL        ms
+  C:098CH         LINE#         20
+  C:098CH         LINE#         21
+  C:0996H         LINE#         22
+  C:0999H         LINE#         23
+  C:099CH         LINE#         24
+  C:099FH         LINE#         25
+  C:09A1H         LINE#         26
+  C:09A4H         LINE#         27
+  C:09A6H         LINE#         28
+  C:09A8H         LINE#         29
+  C:09AAH         LINE#         30
+  -------         ENDPROC       _DELAY_MS
+  -------         PROC          _HIENTHI
+  D:0007H         SYMBOL        gio
+  D:0005H         SYMBOL        phut
+  D:0003H         SYMBOL        giay
+  -------         DO            
+  D:0015H         SYMBOL        chuc_gio
+  D:0016H         SYMBOL        dv_gio
+  D:0017H         SYMBOL        chuc_phut
+  D:0001H         SYMBOL        dv_phut
+  D:0005H         SYMBOL        chuc_giay
+  D:0003H         SYMBOL        dv_giay
+  D:0002H         SYMBOL        i
+  -------         ENDDO         
+  C:090BH         LINE#         32
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  09/06/2019  23:54:05  PAGE 3
+
+
+  C:090BH         LINE#         34
+  C:091AH         LINE#         35
+  C:0928H         LINE#         36
+  C:0935H         LINE#         37
+  C:0941H         LINE#         38
+  C:094CH         LINE#         39
+  C:0957H         LINE#         40
+  C:0962H         LINE#         41
+  C:096CH         LINE#         42
+  C:0976H         LINE#         43
+  C:0980H         LINE#         44
+  C:0983H         LINE#         45
+  -------         ENDPROC       _HIENTHI
+  -------         PROC          MAIN
+  -------         DO            
+  D:0012H         SYMBOL        gio
+  D:0013H         SYMBOL        phut
+  D:0014H         SYMBOL        giay
+  -------         ENDDO         
+  C:088CH         LINE#         47
+  C:088CH         LINE#         48
+  C:0893H         LINE#         49
+  C:0895H         LINE#         50
+  C:0895H         LINE#         51
+  C:0897H         LINE#         52
+  C:0899H         LINE#         53
+  C:08A2H         LINE#         54
+  C:08AAH         LINE#         55
+  C:08B2H         LINE#         56
+  C:08B5H         LINE#         57
+  C:08BAH         LINE#         58
+  C:08C1H         LINE#         59
+  C:08C1H         LINE#         60
+  C:08C4H         LINE#         61
+  C:08C9H         LINE#         62
+  C:08D0H         LINE#         63
+  C:08D0H         LINE#         64
+  C:08D3H         LINE#         65
+  C:08D8H         LINE#         66
+  C:08DFH         LINE#         67
+  C:08DFH         LINE#         68
+  C:08EDH         LINE#         69
+  C:08FBH         LINE#         70
+  C:0909H         LINE#         71
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 012BH BYTE (14%) *
+******************************************************************************
+
+Program Size: data=25.0 xdata=0 code=443
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

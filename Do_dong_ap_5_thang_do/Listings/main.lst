@@ -1,0 +1,41 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              10/06/2019 22:43:37 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: A:\Learning Tools\KeiC 5\Keilc_C51\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTE
+                    -ND PRINT(.\Listings\main.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <REGX51.H>
+   2          #include "port.h"
+   3          #include "LCD16x2.h"
+   4          #include "ADC0808.h"
+   5          #include "string.h"
+   6          #include "delay.h" 
+   7          
+   8          int main(){
+   9   1        ADC0808_Init();
+  10   1        Lcd_Init();
+  11   1        Lcd_Clear();
+  12   1        while(1){
+  13   2          Lcd_Out(0,0,"nothing really matter");
+  14   2          Delay_ms(500);
+  15   2          Lcd_Clear();
+  16   2        }
+  17   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     33    ----
+   CONSTANT SIZE    =     22    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

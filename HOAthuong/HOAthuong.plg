@@ -1,0 +1,44 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+D:\code\chuHOAchuthuong\HOAthuong.uvproj
+Project File Date:  12/22/2018
+
+<h2>Output:</h2>
+Build target 'Target 1'
+Target has no object modules
+Target not created
+Build target 'Target 1'
+assembling Hoathuong.asm...
+Hoathuong.asm(10): error A38: NUMBER OF OPERANDS DOES NOT MATCH INSTRUCTION
+Hoathuong.asm(10): error A9: SYNTAX ERROR
+Hoathuong.asm(17): error A45: UNDEFINED SYMBOL (PASS-2)
+Hoathuong.asm(18): error A38: NUMBER OF OPERANDS DOES NOT MATCH INSTRUCTION
+Hoathuong.asm(23): error A45: UNDEFINED SYMBOL (PASS-2)
+Target not created
+Build target 'Target 1'
+assembling Hoathuong.asm...
+Hoathuong.asm(17): error A45: UNDEFINED SYMBOL (PASS-2)
+Hoathuong.asm(18): error A38: NUMBER OF OPERANDS DOES NOT MATCH INSTRUCTION
+Hoathuong.asm(23): error A45: UNDEFINED SYMBOL (PASS-2)
+Target not created
+Build target 'Target 1'
+assembling Hoathuong.asm...
+Hoathuong.asm(18): error A38: NUMBER OF OPERANDS DOES NOT MATCH INSTRUCTION
+Target not created
+assembling Hoathuong.asm...
+Hoathuong.asm - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling Hoathuong.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=101
+creating hex file from "HOAthuong"...
+"HOAthuong" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling Hoathuong.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=99
+creating hex file from "HOAthuong"...
+"HOAthuong" - 0 Error(s), 0 Warning(s).

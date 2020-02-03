@@ -1,0 +1,166 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    09/02/2019  17:15:47  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+A:\LEARNING TOOLS\KEIC 5\KEILC_C51\C51\BIN\BL51.EXE .\Objects\main.obj TO .\Objects\LED_7SEG PRINT (.\Listings\LED_7SEG.
+>> m51)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  A:\LEARNING TOOLS\KEIC 5\KEILC_C51\C51\LIB\C51S.LIB (?C_STARTUP)
+  A:\LEARNING TOOLS\KEIC 5\KEILC_C51\C51\LIB\C51S.LIB (?C?ULDIV)
+  A:\LEARNING TOOLS\KEIC 5\KEILC_C51\C51\LIB\C51S.LIB (?C?ULCMP)
+  A:\LEARNING TOOLS\KEIC 5\KEILC_C51\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  .\Objects\LED_7SEG (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0021H     UNIT         ?DT?MAIN
+            DATA    0029H     0008H     UNIT         _DATA_GROUP_
+            IDATA   0031H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     00DFH     UNIT         ?C?LIB_CODE
+            CODE    08DFH     008CH     UNIT         ?C_C51STARTUP
+            CODE    096BH     005CH     UNIT         ?PR?_TACHCHUSO?MAIN
+            CODE    09C7H     004EH     UNIT         ?PR?MAIN?MAIN
+            CODE    0A15H     004AH     UNIT         ?PR?_QUETLED?MAIN
+            CODE    0A5FH     0020H     UNIT         ?PR?_DELAY_MS?MAIN
+            CODE    0A7FH     0017H     UNIT         ?C_INITSEG
+            CODE    0A96H     000BH     UNIT         ?PR?_DELAY?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\LED_7SEG (MAIN)
+
+
+SEGMENT                          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH
+----------------------------------------------
+?C_C51STARTUP                  -----    -----
+  +--> ?PR?MAIN?MAIN
+  +--> ?C_INITSEG
+
+?PR?MAIN?MAIN                  -----    -----
+  +--> ?PR?_TACHCHUSO?MAIN
+  +--> ?PR?_QUETLED?MAIN
+
+?PR?_TACHCHUSO?MAIN            0029H    0008H
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  09/02/2019  17:15:47  PAGE 2
+
+
+?PR?_QUETLED?MAIN              0029H    0002H
+  +--> ?PR?_DELAY?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\LED_7SEG (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:00A0H         PUBLIC        P2
+  D:0008H         PUBLIC        chuSo
+  C:096BH         PUBLIC        _tachChuSo
+  D:000FH         PUBLIC        maquet
+  C:0A96H         PUBLIC        _delay
+  C:09C7H         PUBLIC        main
+  D:0017H         PUBLIC        dem
+  D:001BH         PUBLIC        temp
+  C:0A5FH         PUBLIC        _delay_ms
+  C:0A15H         PUBLIC        _quetLed
+  D:001FH         PUBLIC        so
+  -------         PROC          _DELAY_MS
+  D:0006H         SYMBOL        ms
+  -------         DO            
+  D:0004H         SYMBOL        x
+  D:0002H         SYMBOL        y
+  -------         ENDDO         
+  C:0A5FH         LINE#         9
+  C:0A5FH         LINE#         10
+  C:0A5FH         LINE#         12
+  C:0A69H         LINE#         13
+  C:0A7EH         LINE#         14
+  -------         ENDPROC       _DELAY_MS
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        time
+  C:0A96H         LINE#         16
+  C:0A96H         LINE#         17
+  C:0AA0H         LINE#         18
+  -------         ENDPROC       _DELAY
+  -------         PROC          _TACHCHUSO
+  D:0029H         SYMBOL        temp
+  D:002DH         SYMBOL        soLed
+  -------         DO            
+  D:002FH         SYMBOL        i
+  -------         ENDDO         
+  C:096BH         LINE#         20
+  C:0973H         LINE#         22
+  C:0989H         LINE#         23
+  C:09A3H         LINE#         24
+  C:09BCH         LINE#         25
+  C:09C6H         LINE#         26
+  -------         ENDPROC       _TACHCHUSO
+  -------         PROC          _QUETLED
+  D:0029H         SYMBOL        soLed
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  09/02/2019  17:15:47  PAGE 3
+
+
+  -------         DO            
+  D:0002H         SYMBOL        i
+  D:0082H         SYMBOL        j
+  -------         ENDDO         
+  C:0A15H         LINE#         29
+  C:0A19H         LINE#         31
+  C:0A1CH         LINE#         32
+  C:0A30H         LINE#         33
+  C:0A39H         LINE#         34
+  C:0A46H         LINE#         35
+  C:0A4DH         LINE#         36
+  C:0A50H         LINE#         37
+  C:0A53H         LINE#         38
+  C:0A5EH         LINE#         39
+  -------         ENDPROC       _QUETLED
+  -------         PROC          MAIN
+  C:09C7H         LINE#         40
+  C:09C7H         LINE#         47
+  C:09C7H         LINE#         48
+  C:09E6H         LINE#         49
+  C:09F7H         LINE#         50
+  C:09FEH         LINE#         51
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        ?C?ULDIV
+  C:083CH         PUBLIC        ?C?ULDIV
+  -------         ENDMOD        ?C?ULDIV
+
+  -------         MODULE        ?C?ULCMP
+  C:08CEH         PUBLIC        ?C?ULCMP
+  -------         ENDMOD        ?C?ULCMP
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_MS?MAIN
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0135H BYTE (15%) *
+******************************************************************************
+
+Program Size: data=50.0 xdata=0 code=676
+LINK/LOCATE RUN COMPLETE.  1 WARNING(S),  0 ERROR(S)
